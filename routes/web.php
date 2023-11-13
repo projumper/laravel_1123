@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', [TestController::class, 'test']);
+Route::get('/getAccounts', [TestController::class, 'getAccounts']);
 
 Route::get('/test/userid/{id}/accountid/{accid}', [TestController::class, 'test']);
 

@@ -8,6 +8,8 @@ use Illuminate\View\View;
 
 use Illuminate\Support\Facades\DB;
 
+use App\Models\Accounts;
+
 class TestController extends Controller
 {
     public function test():View
@@ -40,5 +42,35 @@ class TestController extends Controller
         $delete = DB::delete($sql, [2]);
         
         return view('test-db');
+    }
+
+    public function getAccounts():View
+    {
+
+        $accounts = Accounts::where('id',2)->take(10)->get();
+
+        //foreach($accounts as $account)
+        foreach(Accounts::all() as $account)
+        {
+            echo $account->email."<br>";
+        }
+
+
+        //Insert
+        $acc = new Accounts();
+        $acc->firstname = 'Ivan';
+        $acc->email = 'test@test.de';
+        //$acc->
+        //$acc->
+        $acc->save();
+        //Update
+        $acc = new Accounts::find(2);
+        $acc->firstname = 'Email';
+        $acc->email ='test@test.de';
+        $acc->save();
+        //Delete
+        $acc = new Accounts::find(2);
+        $acc->delete();
+
     }
 }
